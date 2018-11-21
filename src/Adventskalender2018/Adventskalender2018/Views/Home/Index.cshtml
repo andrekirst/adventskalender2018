@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .tuer {
+        max-width: 100px;
+        min-width: 100px;
+        min-height: 100px;
+        max-height: 100px;
+        margin: 20px;
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        text-decoration: none;
+        color: initial;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 60px;
+    }
+</style>
+
+<div class="container-fluid">
+    @for (int tag = 1; tag <= 24; tag++)
+    {
+        <a  asp-controller="Tuerchen"
+            asp-action="Tuer"
+            asp-route-tag="@tag"
+            class="tuer">
+            @tag
+        </a>
+    }
+</div>

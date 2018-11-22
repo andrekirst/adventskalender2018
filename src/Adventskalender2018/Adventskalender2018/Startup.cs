@@ -23,14 +23,14 @@ namespace Adventskalender2018
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
+            services.Configure<CookiePolicyOptions>(configureOptions: options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(version: CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,12 +42,12 @@ namespace Adventskalender2018
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler(errorHandlingPath: "/Home/Error");
             }
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
+            app.UseMvc(configureRoutes: routes =>
             {
                 routes.MapRoute(
                     name: "default",

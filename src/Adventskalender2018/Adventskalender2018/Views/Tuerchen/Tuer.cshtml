@@ -1,8 +1,8 @@
 ﻿@model Adventskalender2018.Models.TuerModel
 @{
-    ViewData["Title"] = "Tuer";
+    ViewData[index: "Title"] = "Tuer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Tuer @Html.DisplayFor(m => m.Tag)</h2>
+<h2>Tuer @Html.DisplayFor(expression: m => m.Tag)</h2>
 

@@ -11,7 +11,7 @@ namespace Adventskalender2018.Controllers
     {
         public IActionResult Tuer(int tag)
         {
-            return View(new TuerModel
+            return View(model: new TuerModel
             {
                 Tag = tag
             });

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model AlleTuerenModel;
+
+@{
     ViewData[index: "Title"] = "Home Page";
 }
 
@@ -20,13 +22,13 @@
 </style>
 
 <div class="container-fluid">
-    @for (int tag = 1; tag <= 24; tag++)
+    @foreach (AdventstuerModel adventstuer in Model.Adventstueren)
     {
-        <a  asp-controller="Tuerchen"
-            asp-action="Tuer"
-            asp-route-tag="@tag"
-            class="tuer">
-            @tag
+        <a asp-controller="Tuerchen"
+           asp-action="Tuer"
+           asp-route-tag="@adventstuer.Tag"
+           class="tuer">
+            @adventstuer.Tag
         </a>
     }
 </div>

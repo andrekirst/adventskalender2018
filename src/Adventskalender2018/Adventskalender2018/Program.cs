@@ -13,17 +13,17 @@ namespace Adventskalender2018
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             //CreateWebHostBuilder(args: args).Build().Run();
-            var host = new WebHostBuilder()
-                //.UseKestrel()
-                .ConfigureServices(services => services.AddAutofac())
-                .UseContentRoot(Directory.GetCurrentDirectory())
+            await new WebHostBuilder()
+                .UseKestrel()
+                //.ConfigureServices(configureServices: services => services.AddAutofac())
+                .UseContentRoot(contentRoot: Directory.GetCurrentDirectory())
+                //.UseIISIntegration()
                 .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
+                .Build()
+                .RunAsync();
         }
 
         //public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>

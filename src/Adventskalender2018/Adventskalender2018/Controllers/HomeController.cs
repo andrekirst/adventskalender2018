@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Adventskalender2018.Interfaces.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Adventskalender2018.Models;
 
@@ -10,34 +11,32 @@ namespace Adventskalender2018.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IAlleTuerenSpeicher _alleTuerenSpeicher;
+
+        public HomeController(IAlleTuerenSpeicher alleTuerenSpeicher)
         {
-            return View();
+            _alleTuerenSpeicher = alleTuerenSpeicher;
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> Index()
         {
-            ViewData[index: "Message"] = "Your application description page.";
+            AlleTuerenModel alleTuerenModel = new AlleTuerenModel
+            {
+                Adventstueren = await _alleTuerenSpeicher.GebeMirAlleAdventstueren()
+            };
 
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData[index: "Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(
+                viewName: "Index",
+                model: alleTuerenModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(model: new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(model: new ErrorViewModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            });
         }
     }
 }

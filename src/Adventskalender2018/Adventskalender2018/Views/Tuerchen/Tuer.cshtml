@@ -1,8 +1,31 @@
-﻿@model Adventskalender2018.Models.TuerModel
+﻿@model TuerModel
 @{
     ViewData[index: "Title"] = "Tuer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Tuer @Html.DisplayFor(expression: m => m.Tag)</h2>
-
+<div class="jumbotron">
+    @if(Model.DarfDieFrageBeantwortetWerden)
+    {
+    <h2>Tür @Model.Tag</h2>
+    <h3>Frage: @Model.Frage</h3>
+        <div class="list-group">
+            @foreach (RaetselAntwortModel antwort in Model.Antworten)
+            {
+                <a class="list-group-item" style="font-size: 20px;"
+                   asp-controller="Tuerchen"
+                   asp-action="Beantworten"
+                   asp-route-tag="@Model.Tag"
+                   asp-route-schluessel="@antwort.Schluessel">
+                    @antwort.Antworttext
+                </a>
+            }
+        </div>
+    }
+    else
+    {
+        <div style="text-align: center;">
+            <h1>Hey, das Türchen @Model.Tag darfst du noch nicht öffnen</h1>
+        </div>
+    }
+</div>

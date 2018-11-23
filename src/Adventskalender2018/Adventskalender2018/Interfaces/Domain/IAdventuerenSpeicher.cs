@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Adventskalender2018.Interfaces.Domain
 {
-    public interface IAdventuerenSpeicher
-    {
-    }
+    //public interface IAdventuerenSpeicher
+    //{
+    //}
 }

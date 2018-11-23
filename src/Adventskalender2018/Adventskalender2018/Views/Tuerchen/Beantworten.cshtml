@@ -1,0 +1,23 @@
+﻿@model FrageBeantwortetModel
+@{
+    ViewData["Title"] = "Beantworten";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    @if (Model.IstFrageRichtigBeantwortet)
+    {
+        <h2>@Model.FrageKorrektBeantwortetText</h2>
+        <br />
+        <h3>Hier ist der Schlüssel für das Säckchen, das du öffnen kannst: <span style="font-size: 32px;">@Model.Adventsschluessel</span></h3>
+        <br />
+        if (Model.HatBild)
+        {
+            <img src="@Model.Bild" alt="@Model.Adventsschluessel"/>
+        }
+    }
+    else
+    {
+        <label>@Model.FrageFalschBeantwortetText</label>
+    }
+</div>

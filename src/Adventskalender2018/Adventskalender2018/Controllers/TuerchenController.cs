@@ -13,26 +13,34 @@ namespace Adventskalender2018.Controllers
         private readonly IDateTimeProvider _dateTimeProvider;
         private readonly IAdventstuerSpeicher _adventstuerSpeicher;
         private readonly IAdventstuerRaetselSpeicher _adventstuerRaetselSpeicher;
+        private readonly IGeoeffneteTuerenSpeicher _geoeffneteTuerenSpeicher;
 
         public TuerchenController(
             IDateTimeProvider dateTimeProvider,
             IAdventstuerSpeicher adventstuerSpeicher,
-            IAdventstuerRaetselSpeicher adventstuerRaetselSpeicher)
+            IAdventstuerRaetselSpeicher adventstuerRaetselSpeicher,
+            IGeoeffneteTuerenSpeicher geoeffneteTuerenSpeicher)
         {
             _dateTimeProvider = dateTimeProvider;
             _adventstuerSpeicher = adventstuerSpeicher;
             _adventstuerRaetselSpeicher = adventstuerRaetselSpeicher;
+            _geoeffneteTuerenSpeicher = geoeffneteTuerenSpeicher;
         }
 
         public async Task<IActionResult> Tuer(int tag)
         {
             RaetselModel raetsel = await _adventstuerRaetselSpeicher.LadeRaetsel(tag);
+
+            TuerGeoeffnetModel tuer = _geoeffneteTuerenSpeicher.HoleTuerFuerTag(tag: tag);
+            
             return View(model: new TuerModel
             {
                 Tag = tag,
                 DarfDieFrageBeantwortetWerden = _dateTimeProvider.Today >= new DateTime(2018, 12, tag),
                 Frage = raetsel.Frage,
-                Antworten = raetsel.Antworten
+                Antworten = raetsel.Antworten,
+                BereitsErfolgreichGeoeffnet = tuer.Geoeffnet,
+                SchluesselWennErfolgreichBeantwortet = tuer.Geoeffnet ? raetsel.Antworten.First(s => s.IstKorrekteAntwort).Schluessel : null
             });
         }
 
@@ -41,7 +49,10 @@ namespace Adventskalender2018.Controllers
             bool istFrageRichtigBeantortet = await _adventstuerRaetselSpeicher
                 .IstRichtigeAntwort(antwortSchluessel: schluessel, tag: tag);
 
-            await _adventstuerRaetselSpeicher.MarkiereRaetselAlsGeloest(tag);
+            if (istFrageRichtigBeantortet)
+            {
+                await _adventstuerRaetselSpeicher.MarkiereRaetselAlsGeloest(tag); 
+            }
 
             RaetselModel raetsel = await _adventstuerRaetselSpeicher.LadeRaetsel(tag);
 

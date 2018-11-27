@@ -11,13 +11,17 @@
         <br />
         <h3>Hier ist der Schlüssel für das Säckchen, das du öffnen kannst: <span style="font-size: 32px;">@Model.Adventsschluessel</span></h3>
         <br />
+        <a asp-area="" asp-controller="Puzzle" asp-action="Index" class="navbar-brand">Hier kannst du das Gesamtpuzzle angucken</a>
+        <br />
         if (Model.HatBild)
         {
-            <img src="@Model.Bild" alt="@Model.Adventsschluessel"/>
+            <img src="@Model.Bild" alt="@Model.Adventsschluessel" />
         }
     }
     else
     {
         <label>@Model.FrageFalschBeantwortetText</label>
+        <br />
+        <a href="javascript:history.back()">Zurück</a>
     }
 </div>

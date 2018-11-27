@@ -7,6 +7,11 @@ namespace Adventskalender2018.Models
 {
     public class PuzzleTuerenModel
     {
-        List<PuzzleTuerModel> Puzzlestuecke { get; set; } = new List<PuzzleTuerModel>();
+        public List<PuzzleTuerModel> Puzzlestuecke { get; set; } = new List<PuzzleTuerModel>();
+
+        public PuzzleTuerModel GebeMirPuzzleStueckAnhandDesTages(int tag)
+        {
+            return Puzzlestuecke.First(s => s.Tag == tag);
+        }
     }
 }

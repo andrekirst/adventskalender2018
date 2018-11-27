@@ -1,8 +1,108 @@
 ﻿@model PuzzleTuerenModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Puzzle";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Lösung für das Puzzle</h2>
 
+<style>
+    .teil {
+        width: 175px;
+        max-width: 175px;
+        height: 163px;
+        padding: 0;
+        margin: 0;
+        border: solid;
+        border-width: 1px;
+    }
+</style>
+
+<table>
+    <tbody>
+        <tr>
+            <td class="teil">
+                <img id="puzzle1" src="@Model.GebeMirPuzzleStueckAnhandDesTages(1).Bild" />
+            </td>
+            <td class="teil">
+                <img id="puzzle2" src="@Model.GebeMirPuzzleStueckAnhandDesTages(2).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle3" src="@Model.GebeMirPuzzleStueckAnhandDesTages(3).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle4" src="@Model.GebeMirPuzzleStueckAnhandDesTages(4).Bild" />
+            </td>
+        </tr>
+        <tr>
+            <td  class="teil">
+                <img id="puzzle5" src="@Model.GebeMirPuzzleStueckAnhandDesTages(5).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle6" src="@Model.GebeMirPuzzleStueckAnhandDesTages(6).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle7" src="@Model.GebeMirPuzzleStueckAnhandDesTages(7).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle8" src="@Model.GebeMirPuzzleStueckAnhandDesTages(8).Bild" />
+            </td>
+        </tr>
+        <tr>
+            <td  class="teil">
+                <img id="puzzle9" src="@Model.GebeMirPuzzleStueckAnhandDesTages(9).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle10" src="@Model.GebeMirPuzzleStueckAnhandDesTages(10).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle11" src="@Model.GebeMirPuzzleStueckAnhandDesTages(11).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle12" src="@Model.GebeMirPuzzleStueckAnhandDesTages(12).Bild" />
+            </td>
+        </tr>
+        <tr>
+            <td  class="teil">
+                <img id="puzzle13" src="@Model.GebeMirPuzzleStueckAnhandDesTages(13).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle14" src="@Model.GebeMirPuzzleStueckAnhandDesTages(14).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle15" src="@Model.GebeMirPuzzleStueckAnhandDesTages(15).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle16" src="@Model.GebeMirPuzzleStueckAnhandDesTages(16).Bild" />
+            </td>
+        </tr>
+        <tr>
+            <td  class="teil">
+                <img id="puzzle17" src="@Model.GebeMirPuzzleStueckAnhandDesTages(17).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle18" src="@Model.GebeMirPuzzleStueckAnhandDesTages(18).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle19" src="@Model.GebeMirPuzzleStueckAnhandDesTages(19).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle20" src="@Model.GebeMirPuzzleStueckAnhandDesTages(20).Bild" />
+            </td>
+        </tr>
+        <tr>
+            <td  class="teil">
+                <img id="puzzle21" src="@Model.GebeMirPuzzleStueckAnhandDesTages(21).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle22" src="@Model.GebeMirPuzzleStueckAnhandDesTages(22).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle23" src="@Model.GebeMirPuzzleStueckAnhandDesTages(23).Bild" />
+            </td>
+            <td  class="teil">
+                <img id="puzzle24" src="@Model.GebeMirPuzzleStueckAnhandDesTages(24).Bild" />
+            </td>
+        </tr>
+    </tbody>
+</table>

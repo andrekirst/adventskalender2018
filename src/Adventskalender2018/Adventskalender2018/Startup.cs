@@ -44,6 +44,8 @@ namespace Adventskalender2018
 
 #if DEBUG
             services.AddTransient<IDateTimeProvider, NachWeihnachtenDateTimeProvider>();
+#else
+            services.AddTransient<IDateTimeProvider, DefaultDateTimeProvider>();
 #endif
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -57,7 +59,7 @@ namespace Adventskalender2018
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler(errorHandlingPath: "/Home/Error");
             }
 
             app.UseStaticFiles();

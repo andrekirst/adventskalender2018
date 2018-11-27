@@ -20,7 +20,7 @@ namespace Adventskalender2018.Implementations.Domain
 
         public async Task<RaetselModel> LadeRaetsel(int tag)
         {
-            string fragenDateiJsonInhalt = _fileSystem.File.ReadAllText("Daten/fragen.json");
+            string fragenDateiJsonInhalt = _fileSystem.File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}/Daten/fragen.json");
             return JsonConvert.DeserializeObject<List<RaetselModel>>(fragenDateiJsonInhalt)
                 .First(t => t.Tag == tag);
         }
@@ -38,11 +38,13 @@ namespace Adventskalender2018.Implementations.Domain
 
         public async Task<bool> IstRichtigeAntwort(string antwortSchluessel, int tag)
         {
-            string fragenDateiJsonInhalt = _fileSystem.File.ReadAllText("Daten/fragen.json");
-            return JsonConvert.DeserializeObject<List<RaetselModel>>(fragenDateiJsonInhalt)
+            string fragenDateiJsonInhalt = _fileSystem.File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}/Daten/fragen.json");
+            bool istRichtig = JsonConvert.DeserializeObject<List<RaetselModel>>(fragenDateiJsonInhalt)
                 .First(t => t.Tag == tag)
                 .Antworten.First(s => s.Schluessel == antwortSchluessel)
                 .IstKorrekteAntwort;
+
+            return istRichtig;
         }
     }
 }

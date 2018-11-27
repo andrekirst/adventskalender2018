@@ -9,8 +9,33 @@
     {
     <h2>Tür @Model.Tag</h2>
     <h3>Frage: @Model.Frage</h3>
-        <div class="list-group">
-            @foreach (RaetselAntwortModel antwort in Model.Antworten)
+    <div class="list-group">
+        @foreach (RaetselAntwortModel antwort in Model.Antworten)
+        {
+            if (Model.BereitsErfolgreichGeoeffnet)
+            {
+                if (Model.SchluesselWennErfolgreichBeantwortet == antwort.Schluessel)
+                {
+                    <a class="list-group-item active" style="font-size: 20px;"
+                       asp-controller="Tuerchen"
+                       asp-action="Beantworten"
+                       asp-route-tag="@Model.Tag"
+                       asp-route-schluessel="@antwort.Schluessel">
+                        @antwort.Antworttext
+                    </a>
+                }
+                else
+                {
+                    <a class="list-group-item disabled" style="font-size: 20px;"
+                       asp-controller="Tuerchen"
+                       asp-action="Beantworten"
+                       asp-route-tag="@Model.Tag"
+                       asp-route-schluessel="@antwort.Schluessel">
+                        @antwort.Antworttext
+                    </a>
+                }
+            }
+            else
             {
                 <a class="list-group-item" style="font-size: 20px;"
                    asp-controller="Tuerchen"
@@ -20,7 +45,8 @@
                     @antwort.Antworttext
                 </a>
             }
-        </div>
+        }
+    </div>
     }
     else
     {

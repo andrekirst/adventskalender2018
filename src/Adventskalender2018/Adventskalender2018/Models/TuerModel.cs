@@ -16,5 +16,7 @@ namespace Adventskalender2018.Models
         public List<RaetselAntwortModel> Antworten { get; set; } = new List<RaetselAntwortModel>();
 
         public bool BereitsErfolgreichGeoeffnet { get; set; } = false;
+
+        public string SchluesselWennErfolgreichBeantwortet { get; set; }
     }
 }

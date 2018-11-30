@@ -39,12 +39,10 @@ namespace Adventskalender2018.Implementations.Domain
         public async Task<bool> IstRichtigeAntwort(string antwortSchluessel, int tag)
         {
             string fragenDateiJsonInhalt = _fileSystem.File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}/Daten/fragen.json");
-            bool istRichtig = JsonConvert.DeserializeObject<List<RaetselModel>>(fragenDateiJsonInhalt)
+            return JsonConvert.DeserializeObject<List<RaetselModel>>(fragenDateiJsonInhalt)
                 .First(t => t.Tag == tag)
                 .Antworten.First(s => s.Schluessel == antwortSchluessel)
                 .IstKorrekteAntwort;
-
-            return istRichtig;
         }
     }
 }

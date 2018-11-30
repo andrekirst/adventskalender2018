@@ -17,6 +17,74 @@
     </environment>
 </head>
 <body>
+
+    <style>
+
+        .crossfade > figure {
+            animation: imageAnimation 30s linear infinite 0s;
+            backface-visibility: hidden;
+            background-size: cover;
+            background-position: center center;
+            color: transparent;
+            height: 100%;
+            left: 0px;
+            opacity: 0;
+            position: absolute;
+            top: 0px;
+            width: 100%;
+            z-index: -1;
+        }
+
+            .crossfade > figure:nth-child(1) {
+                background-image: url('images/hintergruende/katze1.jpg');
+            }
+
+            .crossfade > figure:nth-child(2) {
+                animation-delay: 6s;
+                background-image: url('images/hintergruende/katze2.jpg');
+            }
+
+            .crossfade > figure:nth-child(3) {
+                animation-delay: 12s;
+                background-image: url('images/hintergruende/katze3.jpg');
+            }
+
+            .crossfade > figure:nth-child(4) {
+                animation-delay: 18s;
+                background-image: url('images/hintergruende/katze4.jpg');
+            }
+
+        @@keyframes imageAnimation {
+            0% {
+                animation-timing-function: ease-in;
+                opacity: 0;
+            }
+
+            8% {
+                animation-timing-function: ease-out;
+                opacity: 1;
+            }
+
+            17% {
+                opacity: 1
+            }
+
+            25% {
+                opacity: 0
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+    </style>
+    <div class="crossfade">
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
+        <figure></figure>
+    </div>
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -30,8 +98,7 @@
                 <a asp-area="" asp-controller="Puzzle" asp-action="Index" class="navbar-brand">Puzzle</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </nav>
@@ -39,8 +106,8 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; 2018 - Adventskalender2018</p>
+        <footer style="text-align: center">
+            <p style="font-size: 40pt;text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;">Gemacht mit &hearts; für die beste Freundin der Welt</p>
         </footer>
     </div>
 

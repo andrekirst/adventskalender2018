@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Adventskalender2018.Interfaces.Domain;
 using Microsoft.AspNetCore.Mvc;

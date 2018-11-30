@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO.Abstractions;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Adventskalender2018.Implementations.Domain
 {
@@ -24,19 +23,21 @@ namespace Adventskalender2018.Implementations.Domain
 
         public PuzzleTuerenModel HolePuzleTueren()
         {
-            List<PuzzleBildModel> puzzleBilder = JsonConvert.DeserializeObject<List<PuzzleBildModel>>(_fileSystem.File.ReadAllText($"{AppDomain.CurrentDomain.BaseDirectory}/Daten/puzzletag.json"));
+            List<PuzzleBildModel> puzzleBilder = JsonConvert.DeserializeObject<List<PuzzleBildModel>>(value: _fileSystem.File.ReadAllText(path: $"{AppDomain.CurrentDomain.BaseDirectory}/Daten/puzzletag.json"));
             List<TuerGeoeffnetModel> geoeffneteTueren = _geoeffneteTuerenSpeicher.HoleAlleTueren();
 
-            IEnumerable<PuzzleTuerModel> result = from tuer in geoeffneteTueren
-                         join bild in puzzleBilder on tuer.Tag equals bild.Tag
-                         select new PuzzleTuerModel
-                         {
-                             Bild = tuer.Geoeffnet ? bild.Bild : null,
-                             IstGeoffnet = tuer.Geoeffnet,
-                             Tag = tuer.Tag
-                         };
+            IEnumerable<PuzzleTuerModel> result =
+                from tuer in geoeffneteTueren
+                join bild in puzzleBilder on
+                    tuer.Tag equals bild.Tag
+                select new PuzzleTuerModel
+                {
+                    Bild = tuer.Geoeffnet ? bild.Bild : null,
+                    IstGeoffnet = tuer.Geoeffnet,
+                    Tag = tuer.Tag
+                };
             PuzzleTuerenModel puzzleTuerenModel = new PuzzleTuerenModel();
-            puzzleTuerenModel.Puzzlestuecke.AddRange(result);
+            puzzleTuerenModel.Puzzlestuecke.AddRange(collection: result);
             return puzzleTuerenModel;
         }
     }

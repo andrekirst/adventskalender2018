@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Adventskalender2018.Models
 {
@@ -11,7 +9,7 @@ namespace Adventskalender2018.Models
 
         public PuzzleTuerModel GebeMirPuzzleStueckAnhandDesTages(int tag)
         {
-            return Puzzlestuecke.First(s => s.Tag == tag);
+            return Puzzlestuecke.First(predicate: s => s.Tag == tag);
         }
     }
 }

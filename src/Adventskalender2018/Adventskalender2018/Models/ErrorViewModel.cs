@@ -1,5 +1,3 @@
-using System;
-
 namespace Adventskalender2018.Models
 {
     public class ErrorViewModel
